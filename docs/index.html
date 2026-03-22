@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Wireless Communications — NYCU 535100</title>
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --accent: #2e7dd1;
+      --light: #f4f7fb;
+      --border: #d0dce8;
+      --text: #1e2d3d;
+      --muted: #5a7290;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+    }
+    header .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .25rem .75rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    header h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    header h1 span { color: #90c4ff; }
+    header .sub {
+      font-size: 1rem;
+      color: #a8c8f0;
+      margin-bottom: 1.4rem;
+    }
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      justify-content: center;
+    }
+    .meta-pills span {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      color: #ddeeff;
+      font-size: .82rem;
+      padding: .3rem .9rem;
+      border-radius: 999px;
+    }
+
+    /* ── Layout ── */
+    main {
+      max-width: 960px;
+      margin: 2.5rem auto;
+      padding: 0 1.25rem;
+      display: grid;
+      gap: 2rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+    }
+    .card h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 1rem;
+      padding-bottom: .6rem;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    /* ── Overview ── */
+    .overview p { color: var(--text); font-size: .97rem; }
+
+    /* ── Prerequisites ── */
+    .prereq-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .prereq-list li {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .95rem;
+    }
+    .prereq-list li::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Schedule ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+    }
+    thead th {
+      background: var(--primary);
+      color: #fff;
+      padding: .65rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: .8rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    thead th:first-child { border-radius: 8px 0 0 0; }
+    thead th:last-child  { border-radius: 0 8px 0 0; }
+    tbody tr:nth-child(even) { background: #f0f5fb; }
+    tbody tr:hover { background: #deeaf8; }
+    tbody td {
+      padding: .6rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .week-num {
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+      width: 60px;
+    }
+    .date { color: var(--muted); white-space: nowrap; }
+    .badge {
+      display: inline-block;
+      padding: .15rem .55rem;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 600;
+    }
+    .badge-mid  { background: #fff3cd; color: #7a5200; }
+    .badge-final{ background: #d4edda; color: #155724; }
+
+    /* ── Textbooks ── */
+    .book-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+    }
+    .book-list li {
+      display: flex;
+      gap: .9rem;
+      align-items: flex-start;
+    }
+    .book-num {
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .78rem;
+      font-weight: 700;
+    }
+    .book-list li p { font-size: .9rem; }
+    .book-list li em { color: var(--muted); font-size: .83rem; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 1.25rem 1rem; }
+      thead th, tbody td { padding: .5rem .6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="tag">NYCU · Spring 2026 · EEEE30001</div>
+  <h1>Artificial Intelligence<br><span>Wireless Communications</span></h1>
+  <div class="sub">人工智慧無線通訊</div>
+  <div class="meta-pills">
+    <span>👨‍🏫 Prof. 王蒞君 (Li-Chun Wang)</span>
+    <span>📚 3 Credits · Elective</span>
+    <span>🏛 Graduate Program in EE (電機碩)</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- Overview -->
+  <div class="card overview">
+    <h2>Course Overview</h2>
+    <p>This course equips students with machine learning (AI) and wireless communication algorithm design capabilities, covering <strong>5G, B5G, and 6G</strong> communication systems. Students gain hands-on experience implementing communication algorithms in 5G and O-RAN small base stations on <strong>FPGA/RFSoC platforms</strong>, mastering cross-domain skills spanning theory, algorithms, and hardware implementation.</p>
+  </div>
+
+  <!-- Prerequisites -->
+  <div class="card">
+    <h2>Prerequisites</h2>
+    <ul class="prereq-list">
+      <li>Wireless and Digital Communications</li>
+      <li>Computer Networks</li>
+      <li>Machine Learning / Deep Learning</li>
+    </ul>
+  </div>
+
+  <!-- Schedule -->
+  <div class="card">
+    <h2>Weekly Schedule</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:center">Wk</th>
+          <th>Date</th>
+          <th>Topic</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="week-num">1</td>
+          <td class="date">Feb 25</td>
+          <td>Introduction</td>
+        </tr>
+        <tr>
+          <td class="week-num">2</td>
+          <td class="date">Mar 4</td>
+          <td>Channel Modelling, Estimation, and Compression I</td>
+        </tr>
+        <tr>
+          <td class="week-num">3</td>
+          <td class="date">Mar 11</td>
+          <td>Channel Modelling, Estimation, and Compression II</td>
+        </tr>
+        <tr>
+          <td class="week-num">4</td>
+          <td class="date">Mar 18</td>
+          <td>Learning Receiver Design: Signal Detection &amp; Channel Decoding I</td>
+        </tr>
+        <tr>
+          <td class="week-num">5</td>
+          <td class="date">Mar 25</td>
+          <td>Learning Receiver Design: Signal Detection &amp; Channel Decoding II</td>
+        </tr>
+        <tr>
+          <td class="week-num">6</td>
+          <td class="date">Apr 1</td>
+          <td>End-to-End Learning of Wireless Communication Systems I</td>
+        </tr>
+        <tr>
+          <td class="week-num">7</td>
+          <td class="date">Apr 8</td>
+          <td>End-to-End Learning of Wireless Communication Systems II</td>
+        </tr>
+        <tr>
+          <td class="week-num">8</td>
+          <td class="date">Apr 15</td>
+          <td>Learning Resource Allocation in Wireless Networks I</td>
+        </tr>
+        <tr>
+          <td class="week-num">9</td>
+          <td class="date">Apr 22</td>
+          <td>Mid-Term Proposal &nbsp;<span class="badge badge-mid">Midterm</span><br><small>Learning Resource Allocation in Wireless Networks II</small></td>
+        </tr>
+        <tr>
+          <td class="week-num">10</td>
+          <td class="date">Apr 29</td>
+          <td>Wireless for AI: Distributed and Federated Learning I</td>
+        </tr>
+        <tr>
+          <td class="week-num">11</td>
+          <td class="date">May 6</td>
+          <td>Wireless for AI: Distributed and Federated Learning II</td>
+        </tr>
+        <tr>
+          <td class="week-num">12</td>
+          <td class="date">May 13</td>
+          <td>Collaborative Learning over Wireless Networks</td>
+        </tr>
+        <tr>
+          <td class="week-num">13</td>
+          <td class="date">May 20</td>
+          <td>Optimized Federated Learning in Wireless Networks with Constrained Resources</td>
+        </tr>
+        <tr>
+          <td class="week-num">14</td>
+          <td class="date">May 27</td>
+          <td>Quantized Federated Learning &amp; Over-the-Air Computation for Distributed Learning</td>
+        </tr>
+        <tr>
+          <td class="week-num">15</td>
+          <td class="date">Jun 3</td>
+          <td>Federated Knowledge Distillation, Differential Privacy &amp; Timely Wireless Edge Inference</td>
+        </tr>
+        <tr>
+          <td class="week-num">16</td>
+          <td class="date">Jun 10</td>
+          <td><strong>Final Paper Presentation</strong> &nbsp;<span class="badge badge-final">Final</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Textbooks -->
+  <div class="card">
+    <h2>Textbooks &amp; References</h2>
+    <ul class="book-list">
+      <li>
+        <div class="book-num">1</div>
+        <div>
+          <p><strong>Wireless Communications and Machine Learning</strong></p>
+          <em>L. Liang, S. Jin, H. Ye &amp; G. Y. Li — Cambridge University Press, 2026</em>
+        </div>
+      </li>
+      <li>
+        <div class="book-num">2</div>
+        <div>
+          <p><strong>Machine Learning for Future Wireless Communications</strong></p>
+          <em>F. L. Luo — Wiley / IEEE Press, 2020</em>
+        </div>
+      </li>
+      <li>
+        <div class="book-num">3</div>
+        <div>
+          <p><strong>Key Technologies for 5G Wireless Systems</strong></p>
+          <em>Wong, Schober, Ng &amp; Wang — Cambridge University Press, 2017</em>
+        </div>
+      </li>
+      <li>
+        <div class="book-num">4</div>
+        <div>
+          <p><strong>SDR with Zynq Ultrascale+ RFSoC</strong></p>
+          <em>AMD, 2022</em>
+        </div>
+      </li>
+      <li>
+        <div class="book-num">5</div>
+        <div>
+          <p><strong>Shaping Future 6G Networks: Needs, Impacts, and Technologies</strong></p>
+          <em>John Wiley &amp; Sons, 2021</em>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  &copy; 2026 National Yang Ming Chiao Tung University · All Rights Reserved
+</footer>
+
+</body>
+</html>

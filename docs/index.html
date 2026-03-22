@@ -96,6 +96,16 @@
     /* ── Overview ── */
     .overview p { color: var(--text); font-size: .97rem; }
 
+    /* ── Two-column card layout ── */
+    .two-col-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 640px) {
+      .two-col-cards { grid-template-columns: 1fr; }
+    }
+
     /* ── Prerequisites ── */
     .prereq-list {
       list-style: none;
@@ -266,14 +276,26 @@
     </p>
   </div>
 
-  <!-- Prerequisites -->
-  <div class="card">
-    <h2>Prerequisites</h2>
-    <ul class="prereq-list">
-      <li>Wireless and Digital Communications</li>
-      <li>Computer Networks</li>
-      <li>Machine Learning / Deep Learning</li>
-    </ul>
+  <!-- Prerequisites + Online Resources -->
+  <div class="two-col-cards">
+    <div class="card">
+      <h2>Prerequisites</h2>
+      <ul class="prereq-list">
+        <li>Wireless and Digital Communications</li>
+        <li>Computer Networks</li>
+        <li>Machine Learning / Deep Learning</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Online Resources</h2>
+      <ul class="prereq-list">
+        <li>
+          <a href="https://youtube.com/playlist?list=PLLZmsCdVRniim6ljowAc0Le1r245XVMMo&si=dxkRc2nGDK-h8K0L" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none;">
+            Connect Compute Energy-Efficient Techniques for 6G Wireless — Prof. Li-Chun Wang
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <!-- Schedule -->

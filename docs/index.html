@@ -184,6 +184,31 @@
     .book-list li p { font-size: .9rem; }
     .book-list li em { color: var(--muted); font-size: .83rem; }
 
+    /* ── Teaching Assistants ── */
+    .ta-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .ta-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+    }
+    .ta-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+    }
+    .ta-name {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: .95rem;
+    }
+
     /* ── Footer ── */
     footer {
       text-align: center;
@@ -331,6 +356,21 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- Teaching Assistants -->
+  <div class="card">
+    <h2>Teaching Assistants</h2>
+    <div class="ta-grid">
+      <div class="ta-card">
+        <img src="https://avatars.githubusercontent.com/u/121087211?v=4" alt="Tim" />
+        <div class="ta-name">Tim</div>
+      </div>
+      <div class="ta-card">
+        <img src="https://wang.web.nycu.edu.tw/wp-content/uploads/sites/74/2021/04/王老師-300x300.png" alt="Zhehao" />
+        <div class="ta-name">Zhehao</div>
+      </div>
+    </div>
   </div>
 
   <!-- Textbooks -->
